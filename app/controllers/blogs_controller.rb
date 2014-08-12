@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_admin!, :except => [:show, :index]
   
   def index
     @blogs = Blog.all
@@ -20,6 +20,17 @@ class BlogsController < ApplicationController
   end
   
   def update
+    @blog = Blog.find(params[:id])
+ 
+    if @blog.update(blog_params)
+      redirect_to @blog
+    else
+      render 'edit'
+    end
+  end
+  
+  def edit
+    @blog = Blog.find(params[:id])
   end
   
   def destroy

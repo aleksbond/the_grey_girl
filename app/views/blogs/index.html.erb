@@ -1,4 +1,6 @@
 <h1>Listing blogs</h1>
+
+<%= link_to 'New blog', new_blog_path if admin_signed_in? %>
  
 <table>
   <tr>
@@ -10,6 +12,8 @@
     <tr>
       <td><%= blog.title %></td>
       <td><%= blog.text %></td>
+      <td><%= link_to 'Show', blog_path(blog) %></td>
+      <td><%= link_to 'Edit', edit_blog_path(blog) if admin_signed_in? %></td>
     </tr>
   <% end %>
 </table>
