@@ -8,5 +8,5 @@
   <%= @blog.text %>
 </p>
 
-<%= link_to 'Back', blogs_path %>
 <%= link_to 'Edit', edit_blog_path(@blog) if admin_signed_in? %>
+<%= link_to 'Destroy', blog_path(@blog), method: :delete, data: { confirm: 'Are you sure?'} if admin_signed_in? %>

@@ -5,15 +5,14 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Text</th>
   </tr>
  
   <% @blogs.each do |blog| %>
     <tr>
       <td><%= blog.title %></td>
-      <td><%= blog.text %></td>
       <td><%= link_to 'Show', blog_path(blog) %></td>
       <td><%= link_to 'Edit', edit_blog_path(blog) if admin_signed_in? %></td>
+      <td><%= link_to 'Destroy', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?'} if admin_signed_in? %></td>
     </tr>
   <% end %>
 </table>

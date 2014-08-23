@@ -8,7 +8,11 @@ TheGreyGirl::Application.routes.draw do
   root 'home#index'
   
   resources :home
-  resources :blogs
+  resources :blogs do
+    collection do
+      get 'current'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
