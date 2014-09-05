@@ -1,5 +1,4 @@
 class BlogsController < ApplicationController
-  include ActionController::Live
 
   before_filter :authenticate_admin!, :except => [:show, :index]
 
