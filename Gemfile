@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'kaminari'
+gem 'hermitage'
 gem "paperclip", "~> 4.2"
 
 group :doc do

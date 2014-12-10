@@ -1,4 +1,6 @@
 TheGreyGirl::Application.routes.draw do
+  resources :images
+
   devise_for :admins
   get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.
