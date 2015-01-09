@@ -1,12 +1,12 @@
 class BlogsController < ApplicationController
 
-  before_filter :authenticate_admin!, :except => [:show, :index, :current, :directory]
+  before_filter :authenticate_admin!, :except => [:show, :index, :current, :archive]
 
   def index
     @blogs = Blog.order(:id).page params[:page]
   end
   
-  def directory
+  def archive
     @blogs = Blog.order(:id)
   end
 

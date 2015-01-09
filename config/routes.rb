@@ -13,7 +13,7 @@ TheGreyGirl::Application.routes.draw do
   resources :blogs do
     collection do
       get 'current'
-      get 'directory'
+      get 'archive'
     end
   end
 
