@@ -18,12 +18,12 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe BlogsController do
-
+describe BlogsController, :type => :controller do
+  include ControllerHelpers
   # This should return the minimal set of attributes required to create a valid
   # Blog. As you add validations to Blog, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+  let(:valid_attributes) { {title: "Blog title", text: "Blog text"  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -33,7 +33,7 @@ describe BlogsController do
   describe "GET index" do
     it "assigns all blogs as @blogs" do
       blog = Blog.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {}
       expect(assigns(:blogs)).to eq([blog])
     end
   end
@@ -41,42 +41,48 @@ describe BlogsController do
   describe "GET show" do
     it "assigns the requested blog as @blog" do
       blog = Blog.create! valid_attributes
-      get :show, {:id => blog.to_param}, valid_session
+      get :show, {:id => blog.to_param}
       expect(assigns(:blog)).to eq(blog)
     end
   end
 
   describe "GET new" do
     it "assigns a new blog as @blog" do
-      get :new, {}, valid_session
-      expect(assigns(:blog)).to be_a_new(Blog)
+      login_admin
+      get :new, {}
+      expect(response).to render_template(:new)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested blog as @blog" do
+      login_admin
       blog = Blog.create! valid_attributes
-      get :edit, {:id => blog.to_param}, valid_session
+      get :edit, {:id => blog.to_param}
       expect(assigns(:blog)).to eq(blog)
     end
   end
 
   describe "POST create" do
+    before do
+      login_admin
+    end
+    
     describe "with valid params" do
       it "creates a new Blog" do
         expect {
-          post :create, {:blog => valid_attributes}, valid_session
+          post :create, {:blog => valid_attributes}
         }.to change(Blog, :count).by(1)
       end
 
       it "assigns a newly created blog as @blog" do
-        post :create, {:blog => valid_attributes}, valid_session
+        post :create, {:blog => valid_attributes}
         expect(assigns(:blog)).to be_a(Blog)
         expect(assigns(:blog)).to be_persisted
       end
 
       it "redirects to the created blog" do
-        post :create, {:blog => valid_attributes}, valid_session
+        post :create, {:blog => valid_attributes}
         expect(response).to redirect_to(Blog.last)
       end
     end
@@ -85,20 +91,24 @@ describe BlogsController do
       it "assigns a newly created but unsaved blog as @blog" do
         # Trigger the behavior that occurs when invalid params are submitted
         Blog.any_instance.stub(:save).and_return(false)
-        post :create, {:blog => {  }}, valid_session
+        post :create, {:blog => {  }}
         expect(assigns(:blog)).to be_a_new(Blog)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Blog.any_instance.stub(:save).and_return(false)
-        post :create, {:blog => {  }}, valid_session
+        post :create, {:blog => {  }}
         expect(response).to render_template("new")
       end
     end
   end
 
   describe "PUT update" do
+    before do
+      login_admin
+    end
+    
     describe "with valid params" do
       it "updates the requested blog" do
         blog = Blog.create! valid_attributes
@@ -107,18 +117,18 @@ describe BlogsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         expect_any_instance_of(Blog).to receive(:update).with({ "these" => "params" })
-        put :update, {:id => blog.to_param, :blog => { "these" => "params" }}, valid_session
+        put :update, {:id => blog.to_param, :blog => { "these" => "params" }}
       end
 
       it "assigns the requested blog as @blog" do
         blog = Blog.create! valid_attributes
-        put :update, {:id => blog.to_param, :blog => valid_attributes}, valid_session
+        put :update, {:id => blog.to_param, :blog => valid_attributes}
         expect(assigns(:blog)).to eq(blog)
       end
 
       it "redirects to the blog" do
         blog = Blog.create! valid_attributes
-        put :update, {:id => blog.to_param, :blog => valid_attributes}, valid_session
+        put :update, {:id => blog.to_param, :blog => valid_attributes}
         expect(response).to redirect_to(blog)
       end
     end
@@ -128,7 +138,7 @@ describe BlogsController do
         blog = Blog.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Blog.any_instance.stub(:save).and_return(false)
-        put :update, {:id => blog.to_param, :blog => {  }}, valid_session
+        put :update, {:id => blog.to_param, :blog => {  }}
         expect(assigns(:blog)).to eq(blog)
       end
 
@@ -136,23 +146,27 @@ describe BlogsController do
         blog = Blog.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Blog.any_instance.stub(:save).and_return(false)
-        put :update, {:id => blog.to_param, :blog => {  }}, valid_session
+        put :update, {:id => blog.to_param, :blog => {  }}
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
+    before do
+      login_admin
+    end
+    
     it "destroys the requested blog" do
       blog = Blog.create! valid_attributes
       expect {
-        delete :destroy, {:id => blog.to_param}, valid_session
+        delete :destroy, {:id => blog.to_param}
       }.to change(Blog, :count).by(-1)
     end
 
     it "redirects to the blogs list" do
       blog = Blog.create! valid_attributes
-      delete :destroy, {:id => blog.to_param}, valid_session
+      delete :destroy, {:id => blog.to_param}
       expect(response).to redirect_to(blogs_url)
     end
   end

@@ -12,7 +12,10 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'kaminari'
 gem 'hermitage'
-gem "paperclip", "~> 4.2"
+gem 'paperclip', '~> 4.2'
+gem 'factory_girl'
+gem 'pry'
+gem 'draftsman'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

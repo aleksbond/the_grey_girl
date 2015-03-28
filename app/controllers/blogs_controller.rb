@@ -1,3 +1,4 @@
+require 'pry'
 class BlogsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:show, :index, :current, :archive]
@@ -44,7 +45,7 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    @blog = Article.find(params[:id])
+    @blog = Blog.find(params[:id])
     @blog.destroy
 
     redirect_to blogs_path
