@@ -48,6 +48,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    draftsman (0.3.1)
+      activerecord (>= 3.0, < 5.0)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -169,6 +171,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
+  draftsman
   factory_girl
   hermitage
   jbuilder (~> 1.2)
