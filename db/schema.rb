@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150328163807) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",    default: false
     t.integer  "draft_id"
     t.datetime "published_at"
     t.datetime "trashed_at"

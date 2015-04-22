@@ -16,6 +16,10 @@ TheGreyGirl::Application.routes.draw do
       get 'archive'
     end
   end
+  
+  namespace :admin do
+    resources :blogs
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

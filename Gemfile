@@ -16,6 +16,7 @@ gem 'paperclip', '~> 4.2'
 gem 'factory_girl'
 gem 'pry'
 gem 'draftsman'
+gem 'rspec-rails', '~> 3.0.0.beta'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -23,5 +24,4 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
 end
