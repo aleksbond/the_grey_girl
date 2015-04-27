@@ -1,6 +1,6 @@
 <h1>New Blog Post</h1>
 
-<%= form_for :blog, url: blogs_path do |f| %>
+<%= form_for :blog, url: admin_blogs_path do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -16,4 +16,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', blogs_path %>
+<%= link_to 'Back', admin_blogs_path %>

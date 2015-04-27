@@ -1,5 +1,3 @@
-<%= link_to 'New blog', new_blog_path if admin_signed_in? %>
- 
 <table>
   <tr>
     <th>Title</th>
@@ -9,8 +7,6 @@
     <tr>
       <td><%= blog.title %></td>
       <td><%= link_to 'Show', blog_path(blog) %></td>
-      <td><%= link_to 'Edit', edit_blog_path(blog) if admin_signed_in? %></td>
-      <td><%= link_to 'Destroy', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?'} if admin_signed_in? %></td>
     </tr>
   <% end %>
 </table>

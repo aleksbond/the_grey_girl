@@ -1,11 +1,14 @@
- <table>
- 
-  <% @blogs.each do |blog| %>
+<table>
     <tr>
-      <td><h2><%= blog.title %></h2></td>
-      <td><%= blog.text %></td>
+      <th>Title</th>
+      <th>Last Updated</th>
+    </tr>
+  <% @drafts.each do |draft| %>
+    <tr>
+      <td><%= draft.blog.title %></td>
+      <td><%= draft.blog.updated_at %></td>
+      <td><%= link_to 'Edit', edit_admin_draft_path(draft) %></td>
+      <td><%= link_to 'Destroy', admin_draft_path(draft), method: :delete, data: { confirm: 'Are you sure?'} %></td>
     </tr>
   <% end %>
 </table>
-
-<%= paginate @blogs %>

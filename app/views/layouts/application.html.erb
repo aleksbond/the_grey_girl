@@ -49,8 +49,8 @@
           <div class="nav-collapse">
            <ul class="nav">
              <li><%= link_to "Archive", archive_blogs_path  %></li>
-             <li><%= link_to "Link2", "/path2"  %></li>
-             <li><%= link_to "Link3", "/path3"  %></li>
+             <li><%= link_to "New Post", new_admin_blog_path if admin_signed_in? %></li>
+             <li><%= link_to "Drafts", admin_blogs_path if admin_signed_in?  %></li>
            </ul>
            <p class="navbar-text pull-right">
             <% if admin_signed_in? %>
