@@ -18,7 +18,7 @@ TheGreyGirl::Application.routes.draw do
   end
   
   namespace :admin do
-    resources :blogs
+    resources :blogs, :drafts
   end
 
   # Example of regular route:

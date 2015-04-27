@@ -1,0 +1,11 @@
+ <table>
+ 
+  <% @blogs.each do |blog| %>
+    <tr>
+      <td><h2><%= blog.title %></h2></td>
+      <td><%= blog.text %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @blogs %>

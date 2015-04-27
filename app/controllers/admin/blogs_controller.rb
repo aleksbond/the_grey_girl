@@ -1,5 +1,4 @@
-class Admin::BlogsController < ApplicationController
-  before_filter :authenticate_admin!
+class Admin::BlogsController < Admin::BaseController
   before_filter :find_blog,  :only => [:show, :edit, :update, :destroy]
   before_filter :reify_blog, :only => [:show, :edit]
   
