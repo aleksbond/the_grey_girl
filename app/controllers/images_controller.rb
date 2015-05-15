@@ -38,10 +38,16 @@ class ImagesController < ApplicationController
 
   private
     def set_image
-      @image = Image.find(params[:id])
+      @image = Image.find(params[:id]) #if params[:id].numeric?
     end
 
     def image_params
       params[:image]
     end
+end
+
+class String
+  def numeric?
+    Float(self) != nil rescue false
+  end
 end
