@@ -1,0 +1,12 @@
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @blog.text %>
+</p>
+
+<%= link_to 'Edit', edit_admin_blog_path(@blog) %>
+<%= link_to 'Destroy', admin_blog_path(@blog), method: :destroy, data: { confirm: 'Are you sure?'} %>

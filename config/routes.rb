@@ -18,7 +18,10 @@ TheGreyGirl::Application.routes.draw do
   end
   
   namespace :admin do
-    resources :blogs, :drafts
+    resources :blogs do
+      put 'publish' => "drafts#update"
+    end
+    resources :drafts
   end
 
   # Example of regular route:

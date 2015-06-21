@@ -1,14 +1,25 @@
 <table>
     <tr>
       <th>Title</th>
-      <th>Last Updated</th>
+      <th>Published</th>
     </tr>
   <% @drafts.each do |draft| %>
     <tr>
-      <td><%= draft.blog.title %></td>
-      <td><%= draft.blog.updated_at %></td>
-      <td><%= link_to 'Edit', edit_admin_draft_path(draft) %></td>
-      <td><%= link_to 'Destroy', admin_draft_path(draft), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+      <td><%= link_to draft.blog.title, admin_draft_path(draft) %></td>
+      <td><%= draft.blog.published_at %></td>
+      <td>
+        <div class="btn-group">
+          <%= link_to edit_admin_draft_path(draft), class: "btn btn-default" do %>
+            <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>
+          <%= link_to admin_draft_path(draft), method: :destroy, data: { confirm: 'Are you sure?'}, class: "btn btn-default" do %>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+          <%= link_to admin_draft_path(blog), controller: "drafts", action: "update", id: draft.id, data: { confirm: 'Are you ready to publish?'}, class: "btn btn-default" do %>
+            <i class="glyphicon glyphicon-globe"></i>
+          <% end %>
+        </div>
+      </td>
     </tr>
   <% end %>
 </table>

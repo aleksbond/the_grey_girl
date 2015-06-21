@@ -22,7 +22,7 @@ class Admin::DraftsController < Admin::BaseController
     if @dependencies.empty? && params[:commit_publication]
       @draft.publish!
       flash[:success] = 'The draft was published successfully.'
-      redirect_to admin_drafts_path
+      redirect_to admin_blogs_path
     else
       # Renders `app/views/drafts/update.html.erb`
     end
@@ -52,6 +52,10 @@ private
 
   # Finds draft by `params[:id]`.
   def find_draft
-    @draft = Draftsman::Draft.find(params[:id])
+    if params[:id]
+      @draft = Draftsman::Draft.find(params[:id])
+    elsif params[:blog_id]
+      @draft = Blog.find(params[:blog_id]).draft
+    end
   end
 end
