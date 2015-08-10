@@ -3,8 +3,8 @@ class Admin::BlogsController < Admin::BaseController
   before_filter :reify_blog, :only => [:show, :edit]
   
   def index
-    @blogs = Blog.live.includes(:draft).order(:id).page params[:page]
-    @blogs.map! { |blog| blog.draft.reify if blog.draft? }
+    @blogs = Blog.live.order(id: :desc)
+    @blogs.each { |blog| blog.draft.reify if blog.draft? }
   end
   
   def show

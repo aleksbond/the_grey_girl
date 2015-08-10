@@ -42,12 +42,11 @@
 
     </div>
     <div class="container">
-       <% if notice %>
-         <p class="alert alert-success"><%= notice %></p>
-       <% end %>
-       <% if alert %>
-         <p class="alert alert-danger"><%= alert %></p>
-       <% end %>
+      <p>
+        <%= flash[:success] unless flash[:success].blank? %>
+        <%= flash[:error] unless flash[:error].blank? %>
+      </p>
+
 		   <%= yield %>
       <footer>
         <p>&copy; TheGreyGirl 2014</p>

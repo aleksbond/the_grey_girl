@@ -13,7 +13,7 @@
           <%= link_to edit_admin_blog_path(blog), class: "btn btn-default" do %>
             <i class="glyphicon glyphicon-pencil"></i>
           <% end %>
-          <%= link_to admin_blog_path(blog), method: :destroy, data: { confirm: 'Are you sure?'}, class: "btn btn-default" do %>
+          <%= link_to admin_blog_path(blog), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-default" do %>
             <i class="glyphicon glyphicon-trash"></i>
           <% end %>
           <%= link_to admin_blog_publish_path(:blog_id => blog.id, :commit_publication => true), method: :put, data: { confirm: 'Are you ready to publish?'}, class: "btn btn-default" do %>
