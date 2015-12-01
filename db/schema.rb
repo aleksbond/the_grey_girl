@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150328163807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: true do |t|
+  create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150328163807) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "blogs", force: true do |t|
+  create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
     t.datetime "created_at"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150328163807) do
     t.datetime "trashed_at"
   end
 
-  create_table "drafts", force: true do |t|
+  create_table "drafts", force: :cascade do |t|
     t.string   "item_type",      null: false
     t.integer  "item_id",        null: false
     t.string   "event",          null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150328163807) do
   add_index "drafts", ["updated_at"], name: "index_drafts_on_updated_at", using: :btree
   add_index "drafts", ["whodunnit"], name: "index_drafts_on_whodunnit", using: :btree
 
-  create_table "galleries", force: true do |t|
+  create_table "galleries", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "blog_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150328163807) do
 
   add_index "galleries", ["blog_id"], name: "index_galleries_on_blog_id", using: :btree
 
-  create_table "images", force: true do |t|
+  create_table "images", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "gallery_id"
